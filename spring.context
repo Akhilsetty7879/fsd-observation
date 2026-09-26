@@ -1,0 +1,46 @@
+package com.example.vm1;
+
+import javax.management.Notification;
+
+interface NotificationProvider {
+    void sendNotification(String message,String recipient);
+}
+class EmailProvider implements NotificationProvider{
+    @Override
+    public void sendNotification(String message, String recipient){
+        System.out.println("sending Email to"+ recipient +"+message");
+    }
+}
+class SmsProvider implements NotificationProvider{
+    @Override
+    public void sendNotification(String message, String recipient){
+        System.out.println("sending Sms to"+recipient+":"+message);
+    }
+}
+class NotificationService{
+    private NotificationService ProvidernotifcationProvider;
+    NotificationService(NotificationProvider notificationProvider){
+        public void sendNotification(String message,String recipient)
+        {
+            notificationProvider sendNotification(message,recipient);
+        }
+    }
+}
+..............................................
+package com.example.vm1;
+
+import org.apache.catalina.core.ApplicationContext;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+@SpringBootApplication
+public class Vm1Application {
+
+	public static void main(String[] args) {
+        ApplicationContext context= ClassPathXmlApplicationContext("ApplicationContext.Xml")
+                NotificationProvider notificationProvider=context.getbeans("Notification",SmsProvider.class)
+                notificationProvider.sendNotification();
+		}
+
+}
