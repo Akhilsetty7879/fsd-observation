@@ -9,3 +9,5 @@ db.Student.updateOne({name:"Thor"},{$set:{age:1510}})
 
   Delete
 db.Student.deleteOne({name:"Loki"})
+
+db.Student.find().sort({ age: 1 })
